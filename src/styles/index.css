@@ -1,1 +1,37 @@
 @import "theme.css";
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5rem;
+}
+
+body {
+    line-height: 1.55;
+}
+
+::selection {
+    background: var(--color-accent);
+    color: #1a1200;
+}
+
+/* One visible focus ring for the whole site. The template removed outlines
+   without replacing them, which left keyboard users with no indication. */
+:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 3px;
+    border-radius: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}

@@ -2,20 +2,23 @@
 import { Icon } from 'astro-icon/components'
 ---
 
-<button id="toggle-theme-button"
+<button
+    id="toggle-theme-button"
+    type="button"
     aria-label="Toggle dark mode"
-    class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border bg-background
-        text-text shadow-sm hover:bg-background-offset focus:outline-none focus:bg-background-offset">
+    class="inline-flex min-h-[40px] min-w-[40px] items-center justify-center rounded border
+        border-hair text-muted transition-colors duration-150 hover:text-ink"
+>
     <div id="icon-theme-light">
-        <Icon id='toggle-theme-icon' name={'Sun'} />
+        <Icon name="Sun" class="size-4" />
     </div>
     <div id="icon-theme-dark">
-        <Icon id='toggle-theme-icon' name={'Moon'} />
+        <Icon name="Moon" class="size-4" />
     </div>
 </button>
 
 <script>
-    import { toggleMarkdownTheme, updateToggleThemeIcon } from "../../scripts/theme";
+    import { updateToggleThemeIcon } from "../../scripts/theme";
 
     const button = document.getElementById('toggle-theme-button');
     const getCurrentTheme = () => document.documentElement.dataset.theme;
@@ -26,7 +29,6 @@ import { Icon } from 'astro-icon/components'
         document.documentElement.dataset.theme = newTheme;
         localStorage.setItem('theme', newTheme);
         updateToggleThemeIcon();
-        toggleMarkdownTheme(newTheme);
     });
 
     updateToggleThemeIcon();

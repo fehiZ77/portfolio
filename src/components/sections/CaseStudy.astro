@@ -1,0 +1,144 @@
+---
+interface Result {
+  value: string;
+  label: string;
+}
+
+interface Props {
+  title: string;
+  role: string;
+  period: string;
+  status: string;
+  stack: string[];
+  context: string;
+  constraints?: string;
+  highlights: string[];
+  results?: Result[];
+  note?: string;
+  link?: string;
+}
+
+const {
+  title,
+  role,
+  period,
+  status,
+  stack,
+  context,
+  constraints,
+  highlights,
+  results = [],
+  note,
+  link,
+} = Astro.props;
+---
+
+<article class="case relative rounded border border-strong bg-surface p-6 sm:p-7">
+  <span class="tick tick-tl" aria-hidden="true"></span>
+  <span class="tick tick-br" aria-hidden="true"></span>
+
+  <div class="flex flex-wrap items-start justify-between gap-3">
+    <h3 class="text-lg font-bold sm:text-xl">{title}</h3>
+    <span class="rounded border border-hair bg-chip px-2 py-1 font-mono text-[11px] uppercase tracking-wider text-muted">
+      {status}
+    </span>
+  </div>
+
+  <dl class="mt-4 grid grid-cols-1 gap-x-8 gap-y-3 border-t border-dashed border-hair pt-4 sm:grid-cols-3">
+    <div>
+      <dt class="font-mono text-[10px] uppercase tracking-[0.1em] text-muted">Role</dt>
+      <dd class="mt-1 text-sm font-semibold">{role}</dd>
+    </div>
+    <div>
+      <dt class="font-mono text-[10px] uppercase tracking-[0.1em] text-muted">Period</dt>
+      <dd class="mt-1 text-sm font-semibold">{period}</dd>
+    </div>
+    <div>
+      <dt class="font-mono text-[10px] uppercase tracking-[0.1em] text-muted">Stack</dt>
+      <dd class="mt-1 text-sm font-semibold">{stack.join(" · ")}</dd>
+    </div>
+  </dl>
+
+  <p class="mt-5 max-w-[70ch] text-[15px] text-muted">{context}</p>
+
+  {constraints && (
+    <div class="mt-5 rounded border border-hair bg-chip p-4">
+      <p class="font-mono text-[10px] uppercase tracking-[0.1em] text-accent-text">
+        Constraints
+      </p>
+      <p class="mt-2 max-w-[70ch] text-[15px] text-muted">{constraints}</p>
+    </div>
+  )}
+
+  <ul class="mt-5 list-disc space-y-2 pl-5 text-[15px]">
+    {highlights.map((item) => <li>{item}</li>)}
+  </ul>
+
+  {results.length > 0 && (
+    <div class="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-3">
+      {results.map((result) => (
+        <div class="rounded border border-hair bg-chip px-4 py-3">
+          <p class="font-mono text-lg font-semibold">{result.value}</p>
+          <p class="mt-1 text-xs text-muted">{result.label}</p>
+        </div>
+      ))}
+    </div>
+  )}
+
+  <slot />
+
+  {link && (
+    <a
+      href={link}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="mt-5 inline-flex min-h-[44px] items-center font-mono text-sm text-accent-text underline underline-offset-4"
+    >
+      View repository ↗
+    </a>
+  )}
+
+  {note && <p class="mt-5 text-xs text-muted">{note}</p>}
+</article>
+
+<style>
+  /* Registration crosses, as on a technical drawing — the one decorative motif,
+     repeated on every card. */
+  .tick {
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    pointer-events: none;
+  }
+
+  .tick::before,
+  .tick::after {
+    content: "";
+    position: absolute;
+    background: var(--color-accent);
+  }
+
+  .tick::before {
+    top: 6px;
+    left: 0;
+    width: 14px;
+    height: 2px;
+  }
+
+  .tick::after {
+    top: 0;
+    left: 6px;
+    width: 2px;
+    height: 14px;
+  }
+
+  .tick-tl {
+    top: -1px;
+    left: -1px;
+  }
+
+  .tick-br {
+    bottom: -1px;
+    right: -1px;
+  }
+</style>

@@ -1,28 +1,65 @@
 ---
 import Header from '../components/layouts/Header.astro';
 import Footer from '../components/layouts/Footer.astro';
+import { basic } from '../config/cv.json';
 
 import '../styles/index.css';
 
 interface Props {
 	title: string;
+	description: string;
+	ogImage?: string;
 }
 
-const { title } = Astro.props;
+const { title, description, ogImage = '/og-image.png' } = Astro.props;
+const canonical = new URL(Astro.url.pathname, Astro.site);
+const ogImageUrl = new URL(ogImage, Astro.site);
+
+const personSchema = {
+	'@context': 'https://schema.org',
+	'@type': 'Person',
+	name: basic.name,
+	jobTitle: basic.role,
+	email: `mailto:${basic.email}`,
+	url: Astro.site?.toString(),
+	sameAs: [basic.github, basic.linkedin],
+	address: { '@type': 'PostalAddress', addressCountry: 'MU' },
+};
 ---
 
 <!doctype html>
 <html lang="en" class="h-full" data-theme="light">
 	<head>
 		<meta charset="UTF-8" />
-		<meta name="description" content="Astro description" />
-		<meta name="viewport" content="width=device-width" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>{title}</title>
+		<meta name="description" content={description} />
+		<link rel="canonical" href={canonical} />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<link rel="sitemap" href="/sitemap-index.xml" />
 		<meta name="generator" content={Astro.generator} />
-		<title>{title}</title>
 
-		<!-- initialize theme -->
+		<meta property="og:type" content="website" />
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		<meta property="og:url" content={canonical} />
+		<meta property="og:image" content={ogImageUrl} />
+		<meta property="og:locale" content="en" />
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:title" content={title} />
+		<meta name="twitter:description" content={description} />
+		<meta name="twitter:image" content={ogImageUrl} />
+
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			rel="stylesheet"
+			href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap"
+		/>
+
+		<script is:inline type="application/ld+json" set:html={JSON.stringify(personSchema)} />
+
+		<!-- initialize theme before paint to avoid a flash -->
 		<script is:inline>
 			const themeSaved = localStorage.getItem("theme");
 
@@ -45,12 +82,18 @@ const { title } = Astro.props;
 				});
 		</script>
 	</head>
-	<body class="h-full flex flex-col overflow-x-hidden bg-default
-		text-default text-base selection:bg-secondary">
+	<body class="h-full flex flex-col overflow-x-hidden bg-canvas text-ink font-sans text-base">
+		<a
+			href="#main"
+			class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50
+				focus:rounded focus:bg-navy focus:px-4 focus:py-2 focus:text-on-navy"
+		>
+			Skip to content
+		</a>
 		<Header />
-		<section class="flex-grow">
+		<main id="main" class="flex-grow">
 			<slot />
-		</section>
+		</main>
 		<Footer />
 	</body>
 </html>

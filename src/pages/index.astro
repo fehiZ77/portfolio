@@ -1,12 +1,22 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Hero from '../components/sections/Hero.astro';
-import Resume from '../components/sections/Resume.astro';
-import Portfolio from '../components/sections/portfolio/Portfolio.astro';
+import Work from '../components/sections/Work.astro';
+import HowIWork from '../components/sections/HowIWork.astro';
+import Stack from '../components/sections/Stack.astro';
+import Background from '../components/sections/Background.astro';
+import Contact from '../components/sections/Contact.astro';
+import { basic } from '../config/cv.json';
 ---
 
-<Layout title="Astro Resume Theme">
+<Layout
+	title={`${basic.name} — ${basic.role}`}
+	description="Backend-leaning full-stack developer in Mauritius. Sole developer of the JKA Mauritius management platform: six modules in production on FTP-only hosting, with CI, test coverage and incident response."
+>
 	<Hero />
-	<Resume />
-	<Portfolio />
+	<Work />
+	<HowIWork />
+	<Stack />
+	<Background />
+	<Contact />
 </Layout>

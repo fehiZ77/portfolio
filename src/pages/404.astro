@@ -1,8 +1,12 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import NotFound from '../components/layouts/NotFound.astro';
+import { basic } from '../config/cv.json';
 ---
 
-<Layout title="Page Not Found">
+<Layout
+	title={`Page not found — ${basic.name}`}
+	description="This page does not exist."
+>
 	<NotFound />
 </Layout>

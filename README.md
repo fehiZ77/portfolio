@@ -1,74 +1,49 @@
-# Astro Resume Theme
+# Portfolio — Fehizoro Rajonhson
 
-Astro Resume Theme is a fully customizable and responsive template, built to help you create a beautiful online resume or portfolio with ease. It is powered by Astro and styled using Tailwind CSS, making it fast, modern, and easy to work with.
+Personal portfolio of Fehizoro Rajonhson — backend-leaning full-stack developer, Mauritius.
+Live at [fehizoro-dev.netlify.app](https://fehizoro-dev.netlify.app).
 
-## Usage
+Built with [Astro](https://astro.build) and Tailwind CSS. Statically generated, no client-side
+framework, one small script each for the theme toggle and the mobile menu.
 
-You can bootstrap a new Astro project using the following command:
+## Running locally
 
 ```bash
-# Bun
-bun create astro@latest --template wasutz/astro-resume-theme
-
-# npm 7+
-npm create astro@latest -- --template wasutz/astro-resume-theme
-
-# pnpm
-pnpm dlx create-astro --template wasutz/astro-resume-theme
-
-# yarn
-yarn create astro --template wasutz/astro-resume-theme
+npm install
+npm run dev      # http://localhost:4321
+npm run build    # type-check, then build to dist/
+npm run preview  # serve the production build
 ```
 
-## 🚀 Features
+## Editing the content
 
-- Tailwind CSS: Utilizes utility-first styling for rapid UI development.
-- Dark Mode: Built-in dark mode toggle for better UX.
-- Theme Customization: Easily adjustable in src/styles/theme.css.
-- Responsive Design: Optimized for mobile, tablet, and desktop devices.
-- MDX Support: Allows blog posts written in Markdown with JSX components.
-- Excellent Lighthouse/PageSpeed scores
-- SEO-friendly
+Everything shown on the site lives in [`src/config/cv.json`](src/config/cv.json) — headline,
+case studies, stack, experience, education, contact details. The components read from it, so
+content changes never require touching markup.
 
-## 🧞 Commands
+| Key | Renders in |
+|---|---|
+| `basic` | hero, contact, footer, page metadata |
+| `work` | the case-study cards |
+| `howIWork` | the approach section |
+| `stack` | the stack section, grouped by depth of experience |
+| `experience`, `education`, `languages` | the background section |
+| `menuItems`, `socialLinks` | header, footer |
 
-All commands are run from the root of the project, from a terminal:
-(Could be use 'npm' instead of bun)
+The CV served by the hero button lives in `public/cv/` and is referenced by
+`basic.cv_file_name`. Keep the two in sync — a mismatch turns the main call to action into a 404.
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `bun install`             | Installs dependencies                            |
-| `bun run dev`             | Starts local dev server at `localhost:4321`      |
-| `bun run build`           | Build your production site to `./dist/`          |
-| `bun run preview`         | Preview your build locally, before deploying     |
-| `bun run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `bun run astro -- --help` | Get help using the Astro CLI                     |
+## Theming
 
-# Getting Started
+Colours are CSS custom properties in [`src/styles/theme.css`](src/styles/theme.css), one block
+per theme, exposed to Tailwind as named colours in
+[`tailwind.config.mjs`](tailwind.config.mjs). `accent` is the display amber; `accent-text` is a
+darkened variant used wherever amber carries text, so it stays above the WCAG AA contrast
+threshold on the light canvas.
 
-1) Initialize the project
-Run one of the commands listed in the Quick Start section.
+## Deployment
 
-2) Customize your resume data
-Edit your resume data in `src/config/cv.json`
-
-3) Customize theme colors
-Modify the color scheme by editing `src/styles/theme.ts` to match your personal branding.
-
-4) Replace your CV file
-Put your cv file in `src/public/cv` and then replace the file name in `src/config/cv.json` (basic.cv_file_name)
-
-5) Run the project locally
-Once you’ve made your customizations, run the development server:
-
-```
-bun run dev
-```
-
-Open http://localhost:4321 in your browser to view the result 🚀
-
-## License
-
-Licensed under the MIT License, Copyright © Wasut Panyawiphat.
-
-See [LICENSE](/LICENSE) for more information.
+Static output, deployed on Netlify from `main`. The canonical domain is set in one place —
+`site` in [`astro.config.mjs`](astro.config.mjs) — and canonical URLs, Open Graph image URLs
+and the sitemap all derive from it. Switching to a custom domain means editing that line and
+the sitemap URL in [`public/robots.txt`](public/robots.txt), then pointing DNS at Netlify.

@@ -1,0 +1,22 @@
+---
+import SectionHeading from "../common/SectionHeading.astro";
+import CaseStudy from "./CaseStudy.astro";
+import ArchitectureDiagram from "./ArchitectureDiagram.astro";
+import { work } from "../../config/cv.json";
+
+const [flagship, ...rest] = work;
+---
+
+<section id="work" class="border-b border-hair">
+  <div class="mx-auto max-w-page px-5 py-14 sm:py-16">
+    <SectionHeading eyebrow="Fig. 01 — Work" title="Selected work" />
+
+    <div class="space-y-6">
+      <CaseStudy {...flagship}>
+        <ArchitectureDiagram />
+      </CaseStudy>
+
+      {rest.map((item) => <CaseStudy {...item} />)}
+    </div>
+  </div>
+</section>

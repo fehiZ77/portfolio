@@ -1,0 +1,35 @@
+---
+import SectionHeading from "../common/SectionHeading.astro";
+import { stack } from "../../config/cv.json";
+---
+
+<section id="stack" class="border-b border-hair">
+  <div class="mx-auto max-w-page px-5 py-14 sm:py-16">
+    <SectionHeading eyebrow="Fig. 03 — Stack" title="What I work with" />
+
+    <p class="mb-8 max-w-[68ch] text-[15px] text-muted">
+      Grouped by how far I have actually taken each one, rather than as one flat list.
+    </p>
+
+    <div class="space-y-5">
+      {stack.map((group) => (
+        <div class="rounded border border-hair bg-surface p-5">
+          <div class="flex flex-wrap items-baseline justify-between gap-2">
+            <h3 class="font-mono text-xs uppercase tracking-wider text-accent-text">
+              {group.tier}
+            </h3>
+            <p class="text-xs text-muted">{group.note}</p>
+          </div>
+
+          <ul class="mt-4 flex flex-wrap gap-2">
+            {group.items.map((item) => (
+              <li class="rounded border border-hair bg-chip px-3 py-1.5 font-mono text-xs">
+                {item}
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

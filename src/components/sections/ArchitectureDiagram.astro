@@ -1,0 +1,90 @@
+---
+// Architecture of the JKA Mauritius platform. Deliberately describes structure
+// only — no client data, no screenshots.
+const layers = [
+  {
+    name: "Roles",
+    detail: "Sensei — scoped to a single dojo · Admin — oversight across all dojos",
+  },
+  {
+    name: "Interface",
+    detail: "Blade templates, vanilla JavaScript, client-side QR and ticket rendering",
+  },
+  {
+    name: "Laravel application",
+    detail:
+      "Members · Licensing · Dojos · Competitions · Seminars · Payments — every record scoped to the active season",
+  },
+  {
+    name: "Data",
+    detail: "MariaDB — schema maintained as SQL rather than framework migrations",
+  },
+];
+---
+
+<figure class="mt-6">
+  <figcaption class="font-mono text-[10px] uppercase tracking-[0.1em] text-accent-text">
+    System architecture
+  </figcaption>
+
+  <div class="arch mt-4">
+    {layers.map((layer) => (
+      <div class="arch-layer">
+        <div class="rounded border border-hair bg-chip px-4 py-3">
+          <p class="font-mono text-[11px] uppercase tracking-wider text-accent-text">
+            {layer.name}
+          </p>
+          <p class="mt-1 text-sm text-muted">{layer.detail}</p>
+        </div>
+      </div>
+    ))}
+  </div>
+
+  <div class="mt-4 rounded border border-dashed border-strong px-4 py-3">
+    <p class="font-mono text-[11px] uppercase tracking-wider text-accent-text">Delivery</p>
+    <p class="mt-1 text-sm text-muted">
+      GitHub Actions → test suite on a disposable MariaDB service → SonarCloud analysis →
+      FTP deployment to shared hosting, with no shell on the server
+    </p>
+  </div>
+</figure>
+
+<style>
+  .arch {
+    position: relative;
+    padding-left: 28px;
+  }
+
+  .arch::before {
+    content: "";
+    position: absolute;
+    left: 8px;
+    top: 10px;
+    bottom: 10px;
+    width: 2px;
+    background: repeating-linear-gradient(
+      var(--color-strong) 0 4px,
+      transparent 4px 8px
+    );
+  }
+
+  .arch-layer {
+    position: relative;
+  }
+
+  .arch-layer + .arch-layer {
+    margin-top: 12px;
+  }
+
+  .arch-layer::before {
+    content: "";
+    position: absolute;
+    left: -28px;
+    top: 16px;
+    width: 10px;
+    height: 10px;
+    border-radius: 9999px;
+    background: var(--color-accent);
+    border: 3px solid var(--color-surface);
+  }
+</style>

@@ -1,86 +1,124 @@
 {
     "basic": {
-        "name": "Paul Smith",
-        "job": "Software Engineer",
-        "summary": "Transforming challenges into opportunities with cutting-edge technology. Driven by a love for elegant, robust code.",
-        "cv_file_name": "paul_cv.pdf"
+        "name": "Fehizoro Rajonhson",
+        "role": "Full-Stack Developer",
+        "headline": "I build and maintain the systems small organisations actually run on.",
+        "intro": "Backend-leaning full-stack developer. I built JKA Mauritius' management platform as its sole developer — six modules in production, on FTP-only hosting with no SSH access — while completing a Master's in Software Architecture.",
+        "location": "Mauritius",
+        "email": "rajonhsonfehizoro@gmail.com",
+        "github": "https://github.com/fehiZ77",
+        "linkedin": "https://www.linkedin.com/in/fehizoro-rajonhson-34ab02277",
+        "cv_file_name": "CV_Fehizoro_Rajonhson.pdf",
+        "availability": "Available for freelance work and full-time roles."
     },
-    "experiences": [
+    "howIWork": [
+        "I joined JKA Mauritius' digitalisation effort on a native-PHP codebase and migrated it to Laravel while the platform stayed live for real dojo members — on shared hosting with FTP as the only access, no SSH, no staging downtime window. Every deployment decision had to survive that constraint.",
+        "That shaped how I work: I design for the environment that actually exists rather than the one that would be convenient. In practice that means caring about the parts that only show up later — data integrity, reconciliation of money, test coverage before a refactor, and being able to diagnose a failure when you cannot open a terminal on the server."
+    ],
+    "work": [
         {
-            "title": "Senior Software Engineer",
-            "sub_title": "Tech Solutions Inc.",
-            "years": "2021 - Present",
-            "details": "Led the development of a scalable e-commerce platform that increased sales by 30%. Worked with modern technologies including React, Node.js, and AWS."
+            "title": "JKA Mauritius Management Platform",
+            "role": "Freelance Full-Stack Developer — sole developer",
+            "period": "June – August 2026",
+            "status": "In production",
+            "stack": ["Laravel 8", "PHP 7.4", "MariaDB", "GitHub Actions", "SonarCloud"],
+            "context": "A national karate federation ran its administration across several dojos on spreadsheets and paper: member records, annual licences, seminar and competition registrations, and the cash each instructor collected and transferred onwards. The platform replaced that with one system used by two distinct roles — instructors managing their own dojo, administrators overseeing all of them.",
+            "constraints": "Shared hosting with FTP as the only access: no SSH, no terminal, no Composer or Artisan on the server, no remote database connection, and no way to point the web root at Laravel's public directory.",
+            "highlights": [
+                "Built six interdependent modules — members, licensing, dojos, competitions, seminars and payments — and migrated the codebase from native PHP to Laravel mid-project, without taking the platform offline.",
+                "Designed the payment flow the federation actually uses: instructors collect cash locally, submit one consolidated bank transfer with proof, and an administrator reconciles and approves it before any QR code, receipt or ticket is issued.",
+                "Set up continuous integration on GitHub Actions running the test suite against a disposable MariaDB service with synthetic fixtures, with SonarCloud static analysis on every push and pull request.",
+                "Remediated known dependency vulnerabilities identified with Snyk through a verified, zero-downtime upgrade.",
+                "Diagnosed a silent production outage with no server access by deploying single-use, token-protected diagnostic scripts, then shipped a permanent fix and a verification checklist.",
+                "Automated QR-code and ticket generation plus Excel and PDF exports, and wrote the technical handover documentation for whoever maintains the platform next."
+            ],
+            "results": [
+                { "value": "0% → 60.6%", "label": "automated test coverage in CI" },
+                { "value": "50 → 10", "label": "known dependency vulnerabilities" },
+                { "value": "3 h", "label": "to root cause, with no server access" }
+            ],
+            "note": "Client codebase — not public. Architecture and constraints described above; happy to walk through the design decisions in detail."
         },
         {
-            "title": "Software Engineer",
-            "sub_title": "Innovate Labs",
-            "years": "2018 - 2021",
-            "details": "Developed and maintained web applications for various clients. Key contributor in migrating legacy systems to cloud infrastructure."
+            "title": "UrbanHub — Validation microservice & CI/CD pipeline",
+            "role": "Sole developer of this service, within a team project",
+            "period": "2026",
+            "status": "Open source",
+            "stack": ["Python", "FastAPI", "Docker", "GitHub Actions", "SonarCloud", "Snyk"],
+            "context": "UrbanHub models a smart city as a set of microservices communicating through events — congestion data, air quality and IoT sensor readings. I owned the validation service and everything around getting it tested, scanned, containerised and deployed.",
+            "constraints": "",
+            "highlights": [
+                "Built the validation service with FastAPI and containerised it with Docker, running alongside the other services through Docker Compose.",
+                "Wrote a five-stage GitHub Actions pipeline: dependency install, pytest with coverage reporting, a quality stage, image build, and a staging deployment.",
+                "Wired flake8, SonarCloud analysis and Snyk dependency scanning into the quality stage, publishing every report as a build artefact.",
+                "Published the container image to GitHub Container Registry, then deployed it with Docker Compose behind a health check on the service's OpenAPI endpoint, so a broken image fails the pipeline rather than the environment."
+            ],
+            "results": [],
+            "note": "Public repository — the pipeline and the service are there to read.",
+            "link": "https://github.com/fehiZ77/EC03-UrbanHub-ms6"
+        }
+    ],
+    "experience": [
+        {
+            "title": "Freelance Full-Stack Developer",
+            "sub_title": "JKA Mauritius Management Platform",
+            "years": "Jun – Aug 2026",
+            "details": "Sole developer of a multi-dojo management platform in production: six modules, Laravel migration, CI pipeline and production incident response. Detailed above."
         },
         {
-            "title": "Junior Developer",
-            "sub_title": "Creative Apps Studio",
-            "years": "2015 - 2018",
-            "details": "Worked on mobile app development, collaborating with design teams to create user-friendly applications."
+            "title": "Backend Developer Intern",
+            "sub_title": "VatiLab Factory",
+            "years": "2024",
+            "details": "Maintained and extended a marketplace backend. Optimised PostgreSQL queries and Laravel performance, cutting API response time by roughly 30%, and refactored existing code to reduce production issues."
         }
     ],
     "education": [
         {
-            "title": "Bachelor of Science in Computer Science",
-            "sub_title": "University of Modern Tech",
-            "years": "2015 - 2019",
-            "details": "Graduated with honors. Specialized in software development, data structures, and algorithms. Worked on various open-source projects and completed internships in tech companies."
+            "title": "Master's Degree, Software Architecture and Development",
+            "sub_title": "3iL Ingénieurs – Université de Limoges, delivered at MCCI Business School, Mauritius",
+            "years": "2025 – Present"
         },
         {
-            "title": "Master of Science in Software Engineering",
-            "sub_title": "Global Tech Institute",
-            "years": "2019 - 2021",
-            "details": "Focused on advanced algorithms, cloud computing, and full-stack development. Published research papers on scalable microservices architecture."
+            "title": "Bachelor's Degree, Web Development and Design",
+            "sub_title": "IT University, Madagascar",
+            "years": "2020 – 2024"
+        },
+        {
+            "title": "Scientific Baccalaureate",
+            "sub_title": "ESCA Antanimena, Madagascar",
+            "years": "2018"
         }
     ],
-    "projects": [
+    "stack": [
         {
-            "imageUrl": "https://images.unsplash.com/photo-1487017159836-4e23ece2e4cf?q=80&w=764&auto=format&fit=crop",
-            "title": "hello.com",
-            "type": "Website",
-            "link": "https://github.com/wasutz/astro-resume-theme"
+            "tier": "Used in production",
+            "note": "Shipped and maintained in a live system.",
+            "items": ["PHP", "Laravel", "MySQL / MariaDB", "JavaScript", "HTML / CSS", "Git", "GitHub Actions", "SonarCloud", "Snyk"]
         },
         {
-            "imageUrl": "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?q=80&w=764&auto=format&fit=crop",
-            "title": "Paul UI kit collections",
-            "type": "UI Kit",
-            "link": "https://github.com/wasutz/astro-resume-theme"
+            "tier": "Used in projects",
+            "note": "Built with, outside a production setting.",
+            "items": ["Python", "FastAPI", "Docker", "PostgreSQL", "Microservices", "Event-Driven Architecture", "UML", "Agile Scrum"]
         },
         {
-            "imageUrl": "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?q=80&w=764&auto=format&fit=crop",
-            "title": "paul.com",
-            "type": "Website",
-            "link": "https://github.com/wasutz/astro-resume-theme"
+            "tier": "Studying as part of my Master's",
+            "note": "Coursework, not yet backed by a shipped project.",
+            "items": ["Java", "Spring Boot", "Next.js", "Hexagonal Architecture"]
         }
+    ],
+    "languages": [
+        { "label": "French", "value": "Fluent — DELF B2" },
+        { "label": "English", "value": "Upper-Intermediate — IELTS 5.5" },
+        { "label": "Malagasy", "value": "Native" }
     ],
     "menuItems": [
-        {
-            "name": "About",
-            "link": "/"
-        },
-        {
-            "name": "Blog",
-            "link": "/blogs"
-        }
+        { "name": "Work", "link": "#work" },
+        { "name": "Stack", "link": "#stack" },
+        { "name": "Background", "link": "#background" },
+        { "name": "Contact", "link": "#contact" }
     ],
     "socialLinks": [
-        {
-            "iconName": "Github",
-            "link": "https://github.com/wasutz/astro-resume-theme"
-        },
-        {
-            "iconName": "Facebook",
-            "link": "https://facebook.com"
-        },
-        {
-            "iconName": "Instagram",
-            "link": "https://instagram.com"
-        }
+        { "iconName": "Github", "label": "GitHub", "link": "https://github.com/fehiZ77" },
+        { "iconName": "Linkedin", "label": "LinkedIn", "link": "https://www.linkedin.com/in/fehizoro-rajonhson-34ab02277" }
     ]
 }

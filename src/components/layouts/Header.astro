@@ -4,47 +4,68 @@ import ThemeToggle from "../common/ThemeToggle.astro";
 import { basic, menuItems } from "../../config/cv.json";
 ---
 
-<header class="bg-background py-4">
-  <div class="container max-w-6xl mx-auto flex justify-between items-center px-4 md:px-8">
-    <!-- Logo -->
-    <div class="text-2xl font-bold">
-      <a href="/" class="hover:text-offset">{basic?.name}</a>
-    </div>
+<header class="sticky top-0 z-40 border-b border-hair bg-canvas">
+  <div class="mx-auto flex max-w-page items-center justify-between gap-4 px-5 py-3">
+    <a href="/" class="font-mono text-sm font-semibold hover:text-accent-text">
+      {basic.name}
+    </a>
 
-    <div class="flex gap-5">
-      <!-- PC Menu -->
-      <nav class="hidden sm:flex space-x-6 items-center">
+    <div class="flex items-center gap-1">
+      <nav aria-label="Main" class="hidden sm:flex items-center gap-1">
         {menuItems.map((item) => (
-          <a href={item.link} class="hover:text-offset">{item.name}</a>
+          <a
+            href={item.link}
+            class="rounded px-3 py-2 font-mono text-xs uppercase tracking-wider text-muted
+              transition-colors duration-150 hover:text-ink"
+          >
+            {item.name}
+          </a>
         ))}
       </nav>
 
-      <!-- Mobile Menu Button -->
-      <div class="sm:hidden flex">
-        <button id="menu-btn" class="focus:outline-none" aria-label="Mobile open menu">
-          <Icon name="Menu" class="size-6"/>
-        </button>
-      </div>
+      <button
+        id="menu-btn"
+        type="button"
+        class="sm:hidden rounded p-2 text-muted hover:text-ink"
+        aria-label="Open menu"
+        aria-expanded="false"
+        aria-controls="mobile-menu"
+      >
+        <Icon name="Menu" class="size-5" />
+      </button>
 
       <ThemeToggle />
     </div>
   </div>
 
-  <!-- Mobile Menu -->
-  <div id="mobile-menu" class="hidden sm:hidden">
+  <nav id="mobile-menu" aria-label="Main" class="hidden border-t border-hair sm:hidden">
     {menuItems.map((item) => (
-      <a href={item.link} class="block px-4 py-2 hover:bg-background-offset">
+      <a
+        href={item.link}
+        class="block px-5 py-3 font-mono text-xs uppercase tracking-wider text-muted hover:text-ink"
+      >
         {item.name}
       </a>
     ))}
-  </div>
+  </nav>
 </header>
 
 <script>
-  const menuBtn = document.getElementById('menu-btn');
-  const mobileMenu = document.getElementById('mobile-menu');
+  const menuBtn = document.getElementById("menu-btn");
+  const mobileMenu = document.getElementById("mobile-menu");
 
-  menuBtn?.addEventListener('click', () => {
-    mobileMenu?.classList.toggle('hidden');
+  const setOpen = (open: boolean) => {
+    mobileMenu?.classList.toggle("hidden", !open);
+    menuBtn?.setAttribute("aria-expanded", String(open));
+    menuBtn?.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+  };
+
+  menuBtn?.addEventListener("click", () => {
+    setOpen(mobileMenu?.classList.contains("hidden") ?? true);
+  });
+
+  // Close on navigation so the panel never covers the anchor target.
+  mobileMenu?.querySelectorAll("a").forEach((link) => {
+    link.addEventListener("click", () => setOpen(false));
   });
 </script>

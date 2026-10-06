@@ -16,16 +16,3 @@ export const updateToggleThemeIcon = () => {
     const themeNext = getNextTheme();
     document.querySelector(`#icon-theme-${themeNext}`)?.classList.remove("hidden");
 };
-
-export const toggleMarkdownTheme = (newTheme: string) => {
-    const contentElement = document.getElementById('markdown');
-    if (!contentElement) {
-        return;
-    }
-
-    if (newTheme === "dark") {
-        contentElement.classList.add('prose-invert');
-    } else {
-        contentElement.classList.remove('prose-invert');
-    }
-};

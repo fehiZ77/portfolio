@@ -4,24 +4,24 @@ export default {
 	theme: {
 		extend: {
 			colors: {
-				primary: "var(--color-primary)",
-				secondary: "var(--color-secondary)",
+				canvas: "var(--color-canvas)",
+				surface: "var(--color-surface)",
+				navy: "var(--color-navy)",
+				ink: "var(--color-ink)",
+				muted: "var(--color-muted)",
+				accent: "var(--color-accent)",
+				"accent-text": "var(--color-accent-text)",
+				hair: "var(--color-hair)",
+				strong: "var(--color-strong)",
+				"on-navy": "var(--color-on-navy)",
+				chip: "var(--color-chip)",
 			},
-			textColor: {
-				default: "var(--color-text)",
-				offset: "var(--color-text-offset)",
+			fontFamily: {
+				sans: ['"IBM Plex Sans"', 'system-ui', '-apple-system', 'Segoe UI', 'sans-serif'],
+				mono: ['"IBM Plex Mono"', 'ui-monospace', 'SFMono-Regular', 'Menlo', 'monospace'],
 			},
-			backgroundColor: {
-				default: "var(--color-background)",
-				offset: "var(--color-background-offset)",
-				border: "var(--color-border)",
-			},
-			borderColor: {
-				default: "var(--color-border)",
-			},
-			animation: {
-				"spin-slower": "spin 35s ease infinite",
-				"spin-slow": "spin 25s ease-in-out infinite reverse",
+			maxWidth: {
+				page: "60rem",
 			},
 		}
 	},

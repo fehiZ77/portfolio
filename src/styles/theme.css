@@ -1,19 +1,31 @@
+/* Blueprint palette — navy is the dominant tone, amber is the annotation accent
+   and stays rare. `accent-text` is a darkened amber reserved for text: the
+   display amber fails WCAG AA against the light canvas. */
+
 [data-theme="light"] {
-    --color-primary: theme("colors.blue.700");
-    --color-secondary: theme("colors.blue.600");
-    --color-text: theme("colors.gray.900");
-    --color-text-offset: theme("colors.gray.600");
-    --color-background: theme("colors.gray.50");
-    --color-background-offset: theme("colors.gray.100");
-    --color-border: theme("colors.gray.900" / 10%);
+    --color-canvas: #F2F4F8;
+    --color-surface: #FFFFFF;
+    --color-navy: #1E3A5F;
+    --color-ink: #10172A;
+    --color-muted: #55607A;
+    --color-accent: #C8841C;
+    --color-accent-text: #8A5A08;
+    --color-hair: #D5DCE6;
+    --color-strong: #B7C2D1;
+    --color-on-navy: #F4F7FC;
+    --color-chip: #E7ECF3;
 }
 
 [data-theme="dark"] {
-    --color-primary: theme("colors.blue.600");
-    --color-secondary: theme("colors.blue.500");
-    --color-text: theme("colors.gray.50");
-    --color-text-offset: theme("colors.gray.400");
-    --color-background: theme("colors.gray.900");
-    --color-background-offset: theme("colors.gray.800");
-    --color-border: theme("colors.gray.50" / 10%);
+    --color-canvas: #0A101C;
+    --color-surface: #111B2D;
+    --color-navy: #13223B;
+    --color-ink: #E7ECF5;
+    --color-muted: #9AA8BF;
+    --color-accent: #E0A440;
+    --color-accent-text: #E0A440;
+    --color-hair: #223049;
+    --color-strong: #2E3F5C;
+    --color-on-navy: #F4F7FC;
+    --color-chip: #17233A;
 }
