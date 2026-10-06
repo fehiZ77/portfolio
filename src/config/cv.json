@@ -12,7 +12,7 @@
         "availability": "Available for freelance work and full-time roles."
     },
     "howIWork": [
-        "I joined JKA Mauritius' digitalisation effort on a native-PHP codebase and migrated it to Laravel while the platform stayed live for real dojo members — on shared hosting with FTP as the only access, no SSH, no staging downtime window. Every deployment decision had to survive that constraint.",
+        "JKA Mauritius initially wanted the platform built in native PHP. I chose Laravel instead, for long-term maintainability, and built it directly on that foundation — on shared hosting with FTP as the only access, no SSH, no staging environment. Every deployment decision had to survive that constraint, for real dojo members using the system from day one.",
         "That shaped how I work: I design for the environment that actually exists rather than the one that would be convenient. In practice that means caring about the parts that only show up later — data integrity, reconciliation of money, test coverage before a refactor, and being able to diagnose a failure when you cannot open a terminal on the server."
     ],
     "work": [
@@ -25,7 +25,7 @@
             "context": "A national karate federation ran its administration across several dojos on spreadsheets and paper: member records, annual licences, seminar and competition registrations, and the cash each instructor collected and transferred onwards. The platform replaced that with one system used by two distinct roles — instructors managing their own dojo, administrators overseeing all of them.",
             "constraints": "Shared hosting with FTP as the only access: no SSH, no terminal, no Composer or Artisan on the server, no remote database connection, and no way to point the web root at Laravel's public directory.",
             "highlights": [
-                "Built six interdependent modules — members, licensing, dojos, competitions, seminars and payments — and migrated the codebase from native PHP to Laravel mid-project, without taking the platform offline.",
+                "Chose Laravel over the client's initial native-PHP request and built six interdependent modules on it from scratch — members, licensing, dojos, competitions, seminars and payments.",
                 "Designed the payment flow the federation actually uses: instructors collect cash locally, submit one consolidated bank transfer with proof, and an administrator reconciles and approves it before any QR code, receipt or ticket is issued.",
                 "Set up continuous integration on GitHub Actions running the test suite against a disposable MariaDB service with synthetic fixtures, with SonarCloud static analysis on every push and pull request.",
                 "Remediated known dependency vulnerabilities identified with Snyk through a verified, zero-downtime upgrade.",
@@ -63,7 +63,7 @@
             "title": "Freelance Full-Stack Developer",
             "sub_title": "JKA Mauritius Management Platform",
             "years": "Jun – Aug 2026",
-            "details": "Sole developer of a multi-dojo management platform in production: six modules, Laravel migration, CI pipeline and production incident response. Detailed above."
+            "details": "Sole developer of a multi-dojo management platform in production: six modules built on Laravel, CI pipeline and production incident response. Detailed above."
         },
         {
             "title": "Backend Developer Intern",
